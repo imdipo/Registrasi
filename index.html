@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Mahasiswa</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Registrasi Mahasiswa Baru</h1>
+        
+        <div class="tabs">
+            <button class="tab-button active" data-tab="registrasi">Form Registrasi</button>
+            <button class="tab-button" data-tab="daftar">Daftar Mahasiswa</button>
+        </div>
+        
+        <div id="registrasi" class="tab-content active">
+            <form id="formRegistrasi">
+                <div class="form-group">
+                    <label for="nim">NIM:</label>
+                    <input type="text" id="nim" name="nim" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap:</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="domisili">Domisili:</label>
+                    <select id="domisili" name="domisili" required>
+                        <option value="">Pilih Domisili</option>
+                        <option value="Jakarta">Jakarta</option>
+                        <option value="Bandung">Bandung</option>
+                        <option value="Surabaya">Surabaya</option>
+                        <option value="Yogyakarta">Yogyakarta</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="jurusan">Jurusan:</label>
+                    <select id="jurusan" name="jurusan" required>
+                        <option value="">Pilih Jurusan</option>
+                        <option value="Teknik Informatika">Teknik Informatika</option>
+                        <option value="Sistem Informasi">Sistem Informasi</option>
+                        <option value="Teknik Elektro">Teknik Elektro</option>
+                        <option value="Manajemen">Manajemen</option>
+                        <option value="Akuntansi">Akuntansi</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">Daftarkan</button>
+            </form>
+            
+            <div id="responseMessage" class="response-message"></div>
+        </div>
+        
+        <div id="daftar" class="tab-content">
+            <div class="filter-group">
+                <label for="filterDomisili">Filter Domisili:</label>
+                <select id="filterDomisili">
+                    <option value="">Semua</option>
+                    <option value="Jakarta">Jakarta</option>
+                    <option value="Bandung">Bandung</option>
+                    <option value="Surabaya">Surabaya</option>
+                    <option value="Yogyakarta">Yogyakarta</option>
+                </select>
+                <button id="btnRefresh" class="refresh-btn">Refresh</button>
+            </div>
+            
+            <div class="stats">
+                <p>Total Mahasiswa: <span id="totalMahasiswa">0</span></p>
+                <p>Total per Domisili: <span id="totalDomisili">-</span></p>
+            </div>
+            
+            <div id="loadingIndicator" class="loading">Memuat data...</div>
+            <div id="daftarMahasiswa" class="mahasiswa-list"></div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
