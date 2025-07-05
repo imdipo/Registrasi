@@ -65,7 +65,7 @@ function loadMahasiswa() {
 
 ## 🚀 Instalasi
 1. Clone repo:
-   ```bash
+```
    git clone https://github.com/username/repo.git
 ```
 2. Setup database: 
