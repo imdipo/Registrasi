@@ -1,15 +1,67 @@
 # Sistem Registrasi Mahasiswa 🎓
 
-![Preview](preview.png) *(Optional: Add screenshot later)*
-
-## 🔐 **Security Notice**
-> ⚠️ File `api/koneksi.php` containing database credentials has been **purged from Git history**. Always use `.env` or `koneksi.example.php` for configuration.
-
 ## 🌟 Fitur
 - 📝 Form registrasi mahasiswa (AJAX)
 - 📊 Tampilan data dengan filter domisili
 - 🔌 API endpoint (`GET`/`POST`)
 - 📱 Responsive design
+
+## 📝 Form Registrasi Mahasiswa
+![preview](img/tampilanForm.png)
+1. Berdasarkan Teknologi
+AJAX Form Submission
+Form yang mengirim data tanpa reload halaman menggunakan fetch()/XMLHttpRequest
+
+```
+document.getElementById('formRegistrasi').addEventListener('submit', function(e) {
+  e.preventDefault();
+  fetch('api/mahasiswa.php', { 
+    method: 'POST',
+    body: JSON.stringify(formData) // 👈 Data diubah ke JSON
+  });
+});
+```
+
+3. Berdasarkan Validasi
+Client-Side Validated Form
+Validasi dilakukan di browser sebelum dikirim ke server:
+
+```
+if (!nim || !nama) { 
+  showError("Harap isi semua field!");
+  return; 
+}
+Server-Side Validated Form
+```
+Validasi tambahan di PHP:
+```
+if (empty($_POST['nim'])) {
+  http_response_code(400);
+  die(json_encode(["error" => "NIM wajib diisi"]));
+}
+```
+## 📊 Data Grid Mahasiswa  
+- Mengkonsumsi API `GET /mahasiswa.php`  
+- Render data JSON ke dalam card HTML  
+- Support filtering client-side  
+![Preview](img/hasil.png)
+```
+function loadMahasiswa() {
+  fetch('api/mahasiswa.php') // proses API Consumption
+    .then(response => response.json()) // JSON Parsing
+    .then(data => {
+      // Dynamic Rendering-na
+      data.data.forEach(mhs => {
+        daftarMahasiswa.innerHTML += `
+          <div class="mahasiswa-card">
+            <h3>${mhs.nama}</h3>
+            <p>NIM: ${mhs.nim}</p>
+          </div>
+        `;
+      });
+    });
+}
+```
 
 ## 🚀 Instalasi
 1. Clone repo:
